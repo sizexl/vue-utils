@@ -1,0 +1,14 @@
+function isIE() {
+  if (!!window.ActiveXObject || 'ActiveXObject' in window) { return true } else { return false }
+}
+
+if (isIE()) {
+  const app = document.getElementById('app')
+  app.innerHTML = '<div id="ie-presentation" style="font-size: 32px;font-weight: 700;line-height: 40px;color: #1482f0;margin-top: 300px;text-align: center">推荐使用Chrome浏览器访问本页面</div>'
+} else {
+  new Vue({
+    router,
+    store,
+    render: (h) => h(App)
+  }).$mount('#app')
+}
