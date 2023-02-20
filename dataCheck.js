@@ -182,6 +182,23 @@ export default {
       }
       return false;      
     }
+    Vue.prototype.nonempty = (param) => {
+      return param !== null && param !== undefined && param.length !== 0
+    }
+    Vue.prototype.timeFromNow = (time) => {
+      let result = ''
+      const now = new Date()
+      const timeDifference = now.getTime() - new Date(time).getTime()
+      // 一周以上直接显示日期
+      if (timeDifference > 1000 * 60 * 60 * 24 * 7) {
+        result = moment(time).format('YYYY-MM-DD HH:mm')
+      } else {
+        result = moment(time).fromNow()
+      }
+      return result
+    }
+    // 根据字符串格式化时间
+    Vue.prototype.$timeFormat = (time, str) => moment(time).format(str)
   }
 }
 
